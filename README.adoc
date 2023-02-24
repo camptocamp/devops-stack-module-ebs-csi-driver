@@ -1,0 +1,3 @@
+= devops-stack-module-ebs-csi-driver
+
+A https://devops-stack.io[DevOps Stack] module to deploy an Amazon EBS Container Storage Interface (CSI) driver.
