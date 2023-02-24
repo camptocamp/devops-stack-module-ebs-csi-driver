@@ -40,7 +40,7 @@ module "iam_assumable_role_ebs" {
   version                    = "~> 5.0"
   create_role                = var.create_role
   number_of_role_policy_arns = 1
-  role_name                  = format("ebs-csi-driver-%s", var.cluster_name)
+  role_name_prefix           = format("ebs-csi-driver-%s-", var.cluster_name)
   provider_url               = replace(var.cluster_oidc_issuer_url, "https://", "")
   role_policy_arns           = ["arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"] # Use the default IAM policy provided by AWS
 
