@@ -35,6 +35,21 @@ data "utils_deep_merge_yaml" "values" {
   input = [for i in concat(local.helm_values, var.helm_values) : yamlencode(i)]
 }
 
+module "iam_assumable_role_ebs" {
+  source                     = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
+  version                    = "~> 5.0" # TODO Upgrade and test with newer version
+  create_role                = var.iam_role_arn != null ? true : false
+  number_of_role_policy_arns = 1
+  role_name                  = format("ebs-csi-driver-%s", var.cluster_name)
+  provider_url               = replace(var.cluster_oidc_issuer_url, "https://", "")
+  role_policy_arns           = ["arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"] # Use the default IAM policy provided by AWS
+
+  # List of ServiceAccounts that have permission to attach to this IAM role
+  oidc_fully_qualified_subjects = [
+    "system:serviceaccount:${var.namespace}:ebs-csi-controller-sa",
+  ]
+}
+
 resource "argocd_application" "this" {
   metadata {
     name      = "ebs-csi-driver"
