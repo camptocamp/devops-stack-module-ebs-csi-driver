@@ -74,11 +74,11 @@ The following requirements are needed by this module:
 
 The following providers are used by this module:
 
+- [[provider_utils]] <<provider_utils,utils>> (>= 1)
+
 - [[provider_argocd]] <<provider_argocd,argocd>> (>= 4)
 
 - [[provider_null]] <<provider_null,null>>
-
-- [[provider_utils]] <<provider_utils,utils>> (>= 1)
 
 === Modules
 
@@ -120,6 +120,30 @@ Type: `bool`
 
 The following input variables are optional (have default values):
 
+==== [[input_cluster_name]] <<input_cluster_name,cluster_name>>
+
+Description: Name given to the cluster. Value used for naming some the resources created by the module.
+
+Type: `string`
+
+Default: `"cluster"`
+
+==== [[input_target_revision]] <<input_target_revision,target_revision>>
+
+Description: Override of target revision of the application chart.
+
+Type: `string`
+
+Default: `"v1.0.1"`
+
+==== [[input_helm_values]] <<input_helm_values,helm_values>>
+
+Description: Helm chart value overrides. They should be passed as a list of HCL structures.
+
+Type: `any`
+
+Default: `[]`
+
 ==== [[input_app_autosync]] <<input_app_autosync,app_autosync>>
 
 Description: Automated sync options for the Argo CD Application resource.
@@ -144,22 +168,6 @@ Default:
 }
 ----
 
-==== [[input_cluster_name]] <<input_cluster_name,cluster_name>>
-
-Description: Name given to the cluster. Value used for naming some the resources created by the module.
-
-Type: `string`
-
-Default: `"cluster"`
-
-==== [[input_cluster_oidc_issuer_url]] <<input_cluster_oidc_issuer_url,cluster_oidc_issuer_url>>
-
-Description: Cluster OIDC issuer URL used to create the OIDC assumable IAM role. This variable is required to create a IAM role if you set `create_role` as true.
-
-Type: `string`
-
-Default: `""`
-
 ==== [[input_dependency_ids]] <<input_dependency_ids,dependency_ids>>
 
 Description: IDs of the other modules on which this module depends on.
@@ -167,22 +175,6 @@ Description: IDs of the other modules on which this module depends on.
 Type: `map(string)`
 
 Default: `{}`
-
-==== [[input_helm_values]] <<input_helm_values,helm_values>>
-
-Description: Helm chart value overrides. They should be passed as a list of HCL structures.
-
-Type: `any`
-
-Default: `[]`
-
-==== [[input_iam_role_arn]] <<input_iam_role_arn,iam_role_arn>>
-
-Description: ARN of an OIDC assumable IAM role that has access to the EBS volumes. When specified, this is added as an annotation to the EBS CSI driver controller ServiceAccount, to allow the driver to manage EBS access points for dynamic volumes provisioning.
-
-Type: `string`
-
-Default: `null`
 
 ==== [[input_name]] <<input_name,name>>
 
@@ -192,13 +184,21 @@ Type: `string`
 
 Default: `"ebs-csi-driver"`
 
-==== [[input_target_revision]] <<input_target_revision,target_revision>>
+==== [[input_iam_role_arn]] <<input_iam_role_arn,iam_role_arn>>
 
-Description: Override of target revision of the application chart.
+Description: ARN of an OIDC assumable IAM role that has access to the EBS volumes. When specified, this is added as an annotation to the EBS CSI driver controller ServiceAccount, to allow the driver to manage EBS access points for dynamic volumes provisioning.
 
 Type: `string`
 
-Default: `"v1.0.1"`
+Default: `null`
+
+==== [[input_cluster_oidc_issuer_url]] <<input_cluster_oidc_issuer_url,cluster_oidc_issuer_url>>
+
+Description: Cluster OIDC issuer URL used to create the OIDC assumable IAM role. This variable is required to create a IAM role if you set `create_role` as true.
+
+Type: `string`
+
+Default: `""`
 
 === Outputs
 
@@ -229,9 +229,9 @@ Description: ID to pass other modules in order to refer to this module as a depe
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Version
-|[[provider_argocd]] <<provider_argocd,argocd>> |>= 4
 |[[provider_null]] <<provider_null,null>> |n/a
 |[[provider_utils]] <<provider_utils,utils>> |>= 1
+|[[provider_argocd]] <<provider_argocd,argocd>> |>= 4
 |===
 
 = Modules
@@ -259,6 +259,30 @@ Description: ID to pass other modules in order to refer to this module as a depe
 [cols="a,a,a,a,a",options="header,autowidth"]
 |===
 |Name |Description |Type |Default |Required
+|[[input_cluster_name]] <<input_cluster_name,cluster_name>>
+|Name given to the cluster. Value used for naming some the resources created by the module.
+|`string`
+|`"cluster"`
+|no
+
+|[[input_argocd_namespace]] <<input_argocd_namespace,argocd_namespace>>
+|Namespace used by Argo CD where the Application and AppProject resources should be created.
+|`string`
+|n/a
+|yes
+
+|[[input_target_revision]] <<input_target_revision,target_revision>>
+|Override of target revision of the application chart.
+|`string`
+|`"v1.0.1"`
+|no
+
+|[[input_helm_values]] <<input_helm_values,helm_values>>
+|Helm chart value overrides. They should be passed as a list of HCL structures.
+|`any`
+|`[]`
+|no
+
 |[[input_app_autosync]] <<input_app_autosync,app_autosync>>
 |Automated sync options for the Argo CD Application resource.
 |
@@ -285,46 +309,10 @@ object({
 
 |no
 
-|[[input_argocd_namespace]] <<input_argocd_namespace,argocd_namespace>>
-|Namespace used by Argo CD where the Application and AppProject resources should be created.
-|`string`
-|n/a
-|yes
-
-|[[input_cluster_name]] <<input_cluster_name,cluster_name>>
-|Name given to the cluster. Value used for naming some the resources created by the module.
-|`string`
-|`"cluster"`
-|no
-
-|[[input_cluster_oidc_issuer_url]] <<input_cluster_oidc_issuer_url,cluster_oidc_issuer_url>>
-|Cluster OIDC issuer URL used to create the OIDC assumable IAM role. This variable is required to create a IAM role if you set `create_role` as true.
-|`string`
-|`""`
-|no
-
-|[[input_create_role]] <<input_create_role,create_role>>
-|Boolean to indicate that the OIDC assumable IAM role should be created. **If passing `iam_role_arn` this should be false, otherwise if you want to create the OIDC assumable IAM role provided by this module, you will need to specify the variable `cluster_oidc_issuer_url`.**
-|`bool`
-|n/a
-|yes
-
 |[[input_dependency_ids]] <<input_dependency_ids,dependency_ids>>
 |IDs of the other modules on which this module depends on.
 |`map(string)`
 |`{}`
-|no
-
-|[[input_helm_values]] <<input_helm_values,helm_values>>
-|Helm chart value overrides. They should be passed as a list of HCL structures.
-|`any`
-|`[]`
-|no
-
-|[[input_iam_role_arn]] <<input_iam_role_arn,iam_role_arn>>
-|ARN of an OIDC assumable IAM role that has access to the EBS volumes. When specified, this is added as an annotation to the EBS CSI driver controller ServiceAccount, to allow the driver to manage EBS access points for dynamic volumes provisioning.
-|`string`
-|`null`
 |no
 
 |[[input_name]] <<input_name,name>>
@@ -333,10 +321,22 @@ object({
 |`"ebs-csi-driver"`
 |no
 
-|[[input_target_revision]] <<input_target_revision,target_revision>>
-|Override of target revision of the application chart.
+|[[input_create_role]] <<input_create_role,create_role>>
+|Boolean to indicate that the OIDC assumable IAM role should be created. **If passing `iam_role_arn` this should be false, otherwise if you want to create the OIDC assumable IAM role provided by this module, you will need to specify the variable `cluster_oidc_issuer_url`.**
+|`bool`
+|n/a
+|yes
+
+|[[input_iam_role_arn]] <<input_iam_role_arn,iam_role_arn>>
+|ARN of an OIDC assumable IAM role that has access to the EBS volumes. When specified, this is added as an annotation to the EBS CSI driver controller ServiceAccount, to allow the driver to manage EBS access points for dynamic volumes provisioning.
 |`string`
-|`"v1.0.1"`
+|`null`
+|no
+
+|[[input_cluster_oidc_issuer_url]] <<input_cluster_oidc_issuer_url,cluster_oidc_issuer_url>>
+|Cluster OIDC issuer URL used to create the OIDC assumable IAM role. This variable is required to create a IAM role if you set `create_role` as true.
+|`string`
+|`""`
 |no
 
 |===
