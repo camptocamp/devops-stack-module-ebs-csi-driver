@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v1.0.1...v1.0.2) (2023-05-30)
+
+
+### Bug Fixes
+
+* add missing provider ([6164191](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/commit/616419163e7582eb82ff9c5561d98e86ec10221e))
+
 ## [1.0.1](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v1.0.0...v1.0.1) (2023-03-17)
 
 
