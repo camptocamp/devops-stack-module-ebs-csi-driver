@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v2.0.0...v2.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* readd support to deactivate auto-sync which was broken by [#10](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/issues/10) ([10e7fe4](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/commit/10e7fe43b04b8c40e28d1f10171fcad63a9a6e05))
+
 ## [2.0.0](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v1.0.2...v2.0.0) (2023-07-11)
 
 
