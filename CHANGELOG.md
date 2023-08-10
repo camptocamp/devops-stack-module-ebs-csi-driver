@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v2.0.1...v2.1.0) (2023-08-10)
+
+
+### Features
+
+* **chart:** minor update of dependencies on ebs-csi-driver chart ([#14](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/issues/14)) ([e692e52](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/commit/e692e52b101966586ae5b3f205b284acd9712ad6))
+
 ## [2.0.1](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v2.0.0...v2.0.1) (2023-08-09)
 
 
