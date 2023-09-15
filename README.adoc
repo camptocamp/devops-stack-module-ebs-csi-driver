@@ -41,7 +41,7 @@ module "ebs" {
   source = "git::https://github.com/camptocamp/devops-stack-module-ebs-csi-driver.git?ref=<RELEASE>"
 
   cluster_name     = local.cluster_name
-  argocd_namespace = local.argocd_namespace
+  argocd_namespace = module.argocd_bootstrap.argocd_namespace
   create_role      = false
   iam_role_arn     = module.iam_assumable_role_ebs.iam_role_arn
 
