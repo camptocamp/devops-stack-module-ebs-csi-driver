@@ -55,6 +55,10 @@ resource "argocd_application" "this" {
   metadata {
     name      = var.destination_cluster != "in-cluster" ? "ebs-csi-driver-${var.destination_cluster}" : "ebs-csi-driver"
     namespace = var.argocd_namespace
+    labels = merge({
+      "application" = "ebs-csi-driver"
+      "cluster"     = var.destination_cluster
+    }, var.argocd_labels)
   }
 
   timeouts {
