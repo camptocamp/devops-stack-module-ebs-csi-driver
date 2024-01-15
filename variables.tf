@@ -67,12 +67,6 @@ variable "dependency_ids" {
 ## Module variables
 #######################
 
-variable "name" {
-  description = "Name used to override the chart name on deployment."
-  type        = string
-  default     = "ebs-csi-driver"
-}
-
 variable "create_role" {
   description = "Boolean to indicate that the OIDC assumable IAM role should be created. **If passing `iam_role_arn` this should be false, otherwise if you want to create the OIDC assumable IAM role provided by this module, you will need to specify the variable `cluster_oidc_issuer_url`.**"
   type        = bool
