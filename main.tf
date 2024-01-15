@@ -76,7 +76,8 @@ resource "argocd_application" "this" {
       path            = "charts/ebs-csi-driver"
       target_revision = var.target_revision
       helm {
-        values = data.utils_deep_merge_yaml.values.output
+        release_name = "efs-csi-driver"
+        values       = data.utils_deep_merge_yaml.values.output
       }
     }
 

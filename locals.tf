@@ -1,7 +1,6 @@
 locals {
   helm_values = [{
     "aws-ebs-csi-driver" = {
-      nameOverride = var.name
       controller = {
         serviceAccount = {
           annotations = {
