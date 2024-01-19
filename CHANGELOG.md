@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.0.0](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v2.4.0...v3.0.0) (2024-01-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove the ArgoCD namespace variable
+* hardcode the release name to remove the destination cluster
+
+### Bug Fixes
+
+* hardcode the release name to remove the destination cluster ([5a01293](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/commit/5a012935d6928b8b36ba9c9d64b610431fbad611))
+* remove the ArgoCD namespace variable ([b881f16](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/commit/b881f1688c95beec523fcbeaac71dded72952a0c))
+
 ## [2.4.0](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v2.3.0...v2.4.0) (2023-11-02)
 
 
