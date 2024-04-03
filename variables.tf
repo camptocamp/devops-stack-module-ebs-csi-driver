@@ -62,6 +62,40 @@ variable "dependency_ids" {
 ## Module variables
 #######################
 
+variable "resources" {
+  description = <<-EOT
+    Resource limits and requests for aws-ebs-csi-driver's components. Follow the style on https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/[official documentation] to understand the format of the values."
+
+    NOTE: These are the same values as the defaults on the Helm chart aws-ebs-csi-driver.
+  EOT
+  type = object({
+
+    controller = optional(object({
+      requests = optional(object({
+        cpu    = optional(string, "10m")
+        memory = optional(string, "40Mi")
+      }), {})
+      limits = optional(object({
+        cpu    = optional(string)
+        memory = optional(string, "256Mi")
+      }), {})
+    }), {})
+
+    node = optional(object({
+      requests = optional(object({
+        cpu    = optional(string, "10m")
+        memory = optional(string, "40Mi")
+      }), {})
+      limits = optional(object({
+        cpu    = optional(string)
+        memory = optional(string, "256Mi")
+      }), {})
+    }), {})
+
+  })
+  default = {}
+}
+
 variable "create_role" {
   description = "Boolean to indicate that the OIDC assumable IAM role should be created. **If passing `iam_role_arn` this should be false, otherwise if you want to create the OIDC assumable IAM role provided by this module, you will need to specify the variable `cluster_oidc_issuer_url`.**"
   type        = bool
@@ -78,4 +112,3 @@ variable "cluster_oidc_issuer_url" {
   type        = string
   default     = "" # Use empty string instead of null because of the replace() that uses this variable.
 }
-
