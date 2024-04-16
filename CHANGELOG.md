@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v3.1.0...v3.2.0) (2024-04-16)
+
+
+### Features
+
+* add variable to set resources with default values ([#27](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/issues/27)) ([9c10157](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/commit/9c101571ecd8b7c513f78b0d0717e359ca94d22f))
+
 ## [3.1.0](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v3.0.0...v3.1.0) (2024-02-23)
 
 
