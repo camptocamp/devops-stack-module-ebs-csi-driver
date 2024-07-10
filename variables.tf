@@ -112,3 +112,10 @@ variable "cluster_oidc_issuer_url" {
   type        = string
   default     = "" # Use empty string instead of null because of the replace() that uses this variable.
 }
+
+variable "default_storage_class" {
+  description = "Boolean to indicate if the EBS CSI driver should be the default storage class."
+  type        = bool
+  default     = true
+  nullable    = false
+}

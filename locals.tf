@@ -1,6 +1,9 @@
 locals {
   helm_values = [{
     "aws-ebs-csi-driver" = {
+      defaultStorageClass = {
+        enabled = var.default_storage_class
+      }
       controller = {
         serviceAccount = {
           annotations = {
