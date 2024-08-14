@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.1](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v3.4.0...v3.4.1) (2024-08-14)
+
+
+### Bug Fixes
+
+* re-set the EBS storage class as the default ([0424d2c](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/commit/0424d2c5337cc3e7ad8b3785f16e2a4b6c1f0723))
+
 ## [3.4.0](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v3.3.0...v3.4.0) (2024-07-10)
 
 
