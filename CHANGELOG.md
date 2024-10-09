@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v3.6.0...v4.0.0) (2024-10-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* point the Argo CD provider to the new repository ([#39](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/issues/39))
+
+### Features
+
+* point the Argo CD provider to the new repository ([#39](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/issues/39)) ([8b9453e](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/commit/8b9453ed6f612d8374a091e3dcac02047e8843d2))
+
 ## [3.6.0](https://github.com/camptocamp/devops-stack-module-ebs-csi-driver/compare/v3.5.0...v3.6.0) (2024-08-29)
 
 
